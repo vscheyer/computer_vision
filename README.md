@@ -10,3 +10,8 @@
 - Helpful resource on kernels/different datasets: https://jakevdp.github.io/PythonDataScienceHandbook/05.07-support-vector-machines.html
 
 ### Feature Extraction
+- OpenCV feature extraction tutorials: https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_feature2d/py_table_of_contents_feature2d/py_table_of_contents_feature2d.html
+-Edge detection: https://docs.opencv.org/master/da/d22/tutorial_py_canny.html
+
+
+### Neural Nets
