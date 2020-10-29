@@ -3,6 +3,8 @@
 ### Datasets
 - Images & annotations with traffic lights, stop sign, speedlimit, crosswalk: https://www.kaggle.com/andrewmvd/road-sign-detection
 - Has 58 classes but could be paired down to a smaller number of classes: https://www.kaggle.com/dmitryyemelyanov/chinese-traffic-signs
+- GTSDB: http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset#Overview (classic dataset for neural network programs)
+- LISA: http://cvrr.ucsd.edu/LISA/lisa-traffic-sign-dataset.html (comes with python script for sorting)
 
 ### SVM Resources
 - Book paul recommended: http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf
