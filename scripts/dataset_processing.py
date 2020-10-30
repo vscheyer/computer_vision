@@ -1,7 +1,6 @@
 """
 This script organizes https://www.kaggle.com/dmitryyemelyanov/chinese-traffic-signs into
-test and training data.
-
+test and training data.  To run the script, a copy of the dataset must be downloaded
 -------------------------------------------------------------------------------
 The dataset is a converted version of publicly available Chinese Traffic Sign Recognition Database.
 This work is supported by National Nature Science Foundation of China(NSFC) Grant 61271306
@@ -40,6 +39,7 @@ class DatasetProcessing():
         self.train_path = self.current_dir + "/train"
         self.test_path = self.current_dir + "/test"
         self.cat_df = []
+        self.selected_df = pd.DataFrame(columns=['file_name','category'])
 
     def select_category(self,val):
         """Returns a pd.DataFrame that is a subset of the image_annotations
@@ -58,6 +58,9 @@ class DatasetProcessing():
         os.mkdir(self.test_path)
 
     def split_category_df_to_folder(self, df):
+        """ splits up a single dataframe containg a split_category_df_to_folder
+        into test and training images
+        """
         size = list(df.shape)[0]
         train_num = (int(math.ceil(size/self.training_div)))
         test_num = size - train_num
@@ -72,18 +75,24 @@ class DatasetProcessing():
             src_path = self.images_path + str(file)
             shutil.copy(src_path, self.test_path)
 
-        ## TODO: get annotations 
-
     def create_train_and_test(self, cat_vals):
+        """Creates a training set of images and a testing set of images from the
+        categories provided in cat_vals.  For the Chinese Traffic Sign
+        Recognition Database there are 58 categories
+        cat_vals (list): a list of the category number to be sorted into test
+        and training data
+        """
         self.create_folders()
         for v in cat_vals:
             df = self.select_category(v)
             self.cat_df.append(df)
+            self.selected_df = pd.concat([self.selected_df,df])
         for df in self.cat_df:
             self.split_category_df_to_folder(df)
+        return self.selected_df
 
-if __name__ == "__main__":
-    downloaded_data_path = '/home/abbymfry/Desktop/chinese_traffic_signs/'
-    ds = DatasetProcessing(downloaded_data_path, training_div = 8)
-    classes = [0]
-    ds.create_train_and_test(classes)
+
+# if __name__ == "__main__":
+#     # downloaded_data_path = '/home/abbymfry/Desktop/chinese_traffic_signs/'
+#     # ds = DatasetProcessing(downloaded_data_path, training_div = 8)
+#     # selected_images_and_annotations = ds.create_train_and_test([4,38])
