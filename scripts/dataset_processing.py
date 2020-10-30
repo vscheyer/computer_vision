@@ -39,7 +39,8 @@ class DatasetProcessing():
         self.train_path = self.current_dir + "/train"
         self.test_path = self.current_dir + "/test"
         self.cat_df = []
-        self.selected_df = pd.DataFrame(columns=['file_name','category'])
+        self.selected_train_df = pd.DataFrame(columns=['file_name','category'])
+        self.selected_test_df = pd.DataFrame(columns=['file_name','category'])
 
     def select_category(self,val):
         """Returns a pd.DataFrame that is a subset of the image_annotations
@@ -66,6 +67,8 @@ class DatasetProcessing():
         test_num = size - train_num
         cat_df_train = (df.iloc[0:train_num])
         cat_df_test = (df.iloc[train_num:train_num + test_num])
+        self.selected_train_df = pd.concat([self.selected_train_df,cat_df_train])
+        self.selected_test_df = pd.concat([self.selected_test_df,cat_df_test])
         cat_train_files_names = cat_df_train['file_name']
         cat_test_files_names = cat_df_test['file_name']
         for file in cat_train_files_names:
@@ -86,13 +89,6 @@ class DatasetProcessing():
         for v in cat_vals:
             df = self.select_category(v)
             self.cat_df.append(df)
-            self.selected_df = pd.concat([self.selected_df,df])
         for df in self.cat_df:
             self.split_category_df_to_folder(df)
-        return self.selected_df
-
-
-# if __name__ == "__main__":
-#     # downloaded_data_path = '/home/abbymfry/Desktop/chinese_traffic_signs/'
-#     # ds = DatasetProcessing(downloaded_data_path, training_div = 8)
-#     # selected_images_and_annotations = ds.create_train_and_test([4,38])
+        return self.selected_train_df, self.selected_test_df
