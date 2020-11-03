@@ -2,7 +2,7 @@ from dataset_processing import DatasetProcessing
 
 
 downloaded_data_path = '/home/abbymfry/Desktop/chinese_traffic_signs/'
-selected_categories = [0,1,2,4,57]
+selected_categories = [0,1,2,4]
 
 if __name__ == "__main__":
     ds = DatasetProcessing(downloaded_data_path, training_div = 2)

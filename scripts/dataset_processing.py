@@ -18,6 +18,7 @@ import os
 import shutil
 import math
 import pandas as pd
+import cv2
 
 class DatasetProcessing():
     def __init__(self,folder_path, training_div = 2):
@@ -78,7 +79,24 @@ class DatasetProcessing():
             src_path = self.images_path + str(file)
             shutil.copy(src_path, self.test_path)
 
-    def create_train_and_test(self, cat_vals):
+    def resize_image(self,size, path):
+        img = cv2.imread(path, cv2.IMREAD_UNCHANGED)
+        out = cv2.resize(img, size)
+        cv2.imwrite(path,out)
+
+    def resize_test_and_train_images(self,size_x, size_y):
+        size = (size_x, size_y)
+        for i in range(0,self.selected_train_df.shape[0]):
+            row = self.selected_train_df.iloc[i]
+            path = self.train_path + "/" + str(row['file_name'])
+            self.resize_image(size, path)
+        for i in range(0,self.selected_test_df.shape[0]):
+            row = self.selected_test_df.iloc[i]
+            path = self.test_path + "/" + str(row['file_name'])
+            self.resize_image(size, path)
+
+    def create_train_and_test(self, cat_vals, resize = False, size_x = 100,
+            size_y = 100):
         """Creates a training set of images and a testing set of images from the
         categories provided in cat_vals.  For the Chinese Traffic Sign
         Recognition Database there are 58 categories
@@ -91,4 +109,8 @@ class DatasetProcessing():
             self.cat_df.append(df)
         for df in self.cat_df:
             self.split_category_df_to_folder(df)
+        self.selected_train_df.reset_index(inplace = True, drop = True)
+        self.selected_test_df.reset_index(inplace = True, drop = True)
+        if resize == True:
+            self.resize_test_and_train_images(size_x, size_y)
         return self.selected_train_df, self.selected_test_df
