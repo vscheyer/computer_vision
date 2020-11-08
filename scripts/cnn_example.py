@@ -1,56 +1,54 @@
 # Example source https://www.datacamp.com/community/tutorials/cnn-tensorflow-python
+# https://towardsdatascience.com/building-a-convolutional-neural-network-cnn-in-keras-329fbbadc5f5
 
 # Import libraries
 import numpy as np
 import matplotlib.pyplot as plt
-import tensorflow as tf
-from tensorflow.examples.tutorials.mnist import input_data
-# matplotlib inline
+from keras.datasets import mnist
 import os
+from keras.utils import to_categorical
+from keras.models import Sequential
+from keras.layers import Dense, Conv2D, Flatten
 
-data = input_data.read_data_sets('data/fashion',one_hot=True,\
-                                 source_url='http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/')
+# data = input_data.read_data_sets('data/fashion',one_hot=True,\
+#                                  source_url='http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/')
 
-# Shapes of training set
-print("Training set (images) shape: {shape}".format(shape=data.train.images.shape))
-print("Training set (labels) shape: {shape}".format(shape=data.train.labels.shape))
+(X_train, y_train), (X_test, y_test) = mnist.load_data()
 
-# Shapes of test set
-print("Test set (images) shape: {shape}".format(shape=data.test.images.shape))
-print("Test set (labels) shape: {shape}".format(shape=data.test.labels.shape))
+#plot the first image in the dataset
+# print(X_train)
+plt.imshow(X_train[0])
+plt.show()
 
-# Create dictionary of target classes
-label_dict = {
- 0: 'T-shirt/top',
- 1: 'Trouser',
- 2: 'Pullover',
- 3: 'Dress',
- 4: 'Coat',
- 5: 'Sandal',
- 6: 'Shirt',
- 7: 'Sneaker',
- 8: 'Bag',
- 9: 'Ankle boot',
-}
+#check image shape
+print(X_train[0].shape)
 
-plt.figure(figsize=[5,5])
+#reshape data to fit model
+X_train = X_train.reshape(60000,28,28,1)
+X_test = X_test.reshape(10000,28,28,1)
 
-# Display the first image in training data
-plt.subplot(121)
-curr_img = np.reshape(data.train.images[0], (28,28))
-curr_lbl = np.argmax(data.train.labels[0,:])
-plt.imshow(curr_img, cmap='gray')
-plt.title("(Label: " + str(label_dict[curr_lbl]) + ")")
+#one-hot encode target column
+y_train = to_categorical(y_train)
+y_test = to_categorical(y_test)
 
-# Display the first image in testing data
-plt.subplot(122)
-curr_img = np.reshape(data.test.images[0], (28,28))
-curr_lbl = np.argmax(data.test.labels[0,:])
-plt.imshow(curr_img, cmap='gray')
-plt.title("(Label: " + str(label_dict[curr_lbl]) + ")")
+y_train[0]
 
-data.train.images[0][500:]
+#create model
+model = Sequential()
+#add model layers
+model.add(Conv2D(64, kernel_size=3, activation='relu', input_shape=(28,28,1)))
+model.add(Conv2D(32, kernel_size=3, activation='relu'))
+model.add(Flatten())
+model.add(Dense(10, activation='softmax'))
 
-np.max(data.train.images[0])
+#compile model using accuracy to measure model performance
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-np.min(data.train.images[0])
+#train the model
+# model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=3)
+
+#predict first 4 images in the test set
+print(model.predict(X_test[:4]))
+
+#actual results for first 4 images in test set
+print(y_test[:4])
