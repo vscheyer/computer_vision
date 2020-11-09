@@ -1,67 +1,46 @@
-import torch.nn as nn
-import torch
-import torch.nn.functional as F
-from torchvision import datasets
-from dataset_processing import DatasetProcessing
 import os
 import cv2
-import torch
-from torchvision import datasets
+from dataset_processing import DatasetProcessing
+import numpy as np
+import matplotlib.pyplot as plt
+import tensorflow as tf
 
 
-
-class TradNet(nn.Module):
-    def __init__(self):
-        super(TradNet, self).__init__()
-        self.fc1 = nn.Linear(20 * 20, 200)
-        self.fc2 = nn.Linear(200, 2)
-
-    def forward(self, x):
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        return F.log_softmax(x)
-
-class ImageFolderWithPaths(datasets.ImageFolder):
-    """Custom dataset that includes image file paths. Extends
-    torchvision.datasets.ImageFolder
-    """
-
-    # override the __getitem__ method. this is the method that dataloader calls
-    def __getitem__(self, index):
-        # this is what ImageFolder normally returns
-        original_tuple = super(ImageFolderWithPaths, self).__getitem__(index)
-        # the image file path
-        path = self.imgs[index][0]
-        # make a new tuple that includes original and the path
-        tuple_with_path = (original_tuple + (path,))
-        return tuple_with_path
-
+def load_data(df):
+    image_paths = []
+    labels = []
+    for r in range(0,train_df.shape[0]):
+        row = train_df.iloc[r]
+        image_label = row["category"]
+        path = train_path + "/" + str(row['file_name'])
+        image_path = tf.convert_to_tensor(path, dtype=tf.string)
+        label = tf.convert_to_tensor(image_label)
+        image_paths.append(image_path)
+        labels.append(label)
+    dataset = tf.data.Dataset.from_tensor_slices((image_paths, labels))
+    
 
 downloaded_data_path = '/home/abbymfry/Desktop/chinese_traffic_signs/'
 selected_categories = [1,50]
-train_path = os.getcwd() #+ "/train/"
+train_path = os.getcwd() + "/train"
+
+size_x=20
+size_y=20
+image_size_flat = size_x * size_y
+n_class = len(selected_categories) #number of classes
 
 if __name__ == "__main__":
     dsp = DatasetProcessing(downloaded_data_path, training_div = 2)
     train_df, test_df = dsp.create_train_and_test(selected_categories,
-        resize=True, size_x=20, size_y=20)
+        resize=True, size_x=size_x, size_y=size_y)
 
-    dataset = ImageFolderWithPaths(train_path)
-    dataloader = torch.utils.DataLoader(dataset)
+    print(train_df)
+    print(train_df.dtypes)
 
+    load_data(train_df)
 
-    # img_path = train_path + "/" + str(train_df.iloc[0]['file_name'])
-    # img = cv2.imread(img_path,cv2.IMREAD_GRAYSCALE)
-
-    # net = TradNet()
-    # print(net)
-    #
-    # optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9)
-    # criterion = nn.NLLLoss()
-    #
-    # epochs = 10
-    # for e in range(epochs):
-
-    for inputs, labels, paths in dataloader:
-        # use the above variables freely
-        print(inputs, labels, paths)
+    # for r in range(0,train_df.shape[0]):
+    #     row = train_df.iloc[r]
+    #     label = row["category"]
+    #     image_path = train_path + "/" + str(row['file_name'])
+    #     print(image_path, label)
