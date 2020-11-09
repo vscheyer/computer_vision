@@ -45,10 +45,12 @@ model.add(Dense(10, activation='softmax'))
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 #train the model
-# model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=3)
+model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=3)
 
 #predict first 4 images in the test set
 print(model.predict(X_test[:4]))
+plt.figure(1)
+
 
 #actual results for first 4 images in test set
 print(y_test[:4])
