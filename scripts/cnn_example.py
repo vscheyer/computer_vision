@@ -27,11 +27,21 @@ print(X_train[0].shape)
 X_train = X_train.reshape(60000,28,28,1)
 X_test = X_test.reshape(10000,28,28,1)
 
+print("BEFORE CATEGORY")
+print(y_train)
+print("PRE TEST")
+print(y_test)
+
 #one-hot encode target column
 y_train = to_categorical(y_train)
 y_test = to_categorical(y_test)
 
 y_train[0]
+
+print("AFTER CATEGORY")
+print(y_train)
+print("TEST")
+print(y_test)
 
 #create model
 model = Sequential()
@@ -45,7 +55,7 @@ model.add(Dense(10, activation='softmax'))
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 #train the model
-model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=3)
+# model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=3)
 
 #predict first 4 images in the test set
 print(model.predict(X_test[:4]))

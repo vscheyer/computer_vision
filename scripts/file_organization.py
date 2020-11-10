@@ -38,6 +38,7 @@ class FileOrganizing():
         """Creates a folder for a class and copies all images from that class
         into the folder"""
         path = self.copied_images_path + "/class_{}".format(class_val)
+        print("new path: " + path)
         os.mkdir(path) #make folder
         df = self.image_annotations.loc[self.image_annotations['category'] == class_val] #make_df
         file_names = df['file_name']
@@ -55,8 +56,11 @@ class FileOrganizing():
         for c in class_vals:
             self.copy_class_to_folder(c)
 
-downloaded_data_path = '/home/abbymfry/Desktop/chinese_traffic_signs/'
+downloaded_data_path = '/home/vscheyer/Desktop/traffic_sign_dataset/archive/'
 selected_categories = [1,4,6,50,9]
 if __name__ == "__main__":
     dp = FileOrganizing(downloaded_data_path)
+    print("organize dataset")
     dp.organize_data(selected_categories)
+    print("done")
+    

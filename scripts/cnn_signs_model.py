@@ -8,13 +8,14 @@ import os
 from keras.utils import to_categorical
 from keras.models import Sequential
 from keras.layers import Dense, Conv2D, Flatten
-from dataset_processing import DatasetProcessing
+# from dataset_processing import DatasetProcessing
 
 import PIL
 import PIL.Image
 import tensorflow as tf
 import tensorflow_datasets as tfds
 import pathlib
+from tensorflow.keras import layers
 
 # data = input_data.read_data_sets('data/fashion',one_hot=True,\
 #                                  source_url='http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/')
@@ -27,19 +28,42 @@ class ConvNeuralNet():
         self.y_test = []
         self.model = None
 
-    def load_data(self, dataset):
-        (self.X_train, self.y_train), (self.X_test, self.y_test) = dataset
+    def load_data(self, data_dir):
+        batch_size = 32
+        img_height = 20
+        img_width = 20
 
-        #reshape data to fit model
-        self.X_train = self.X_train.reshape(60000,28,28,1)sudo make install
-        self.X_test = self.X_test.reshape(10000,28,28,1)
+        self.train_ds = tf.keras.preprocessing.image_dataset_from_directory(
+            data_dir,
+            validation_split=0.2,
+            subset="training",
+            seed=123,
+            image_size=(img_height, img_width),
+            batch_size=batch_size)
 
-        #mnist.load_data()
+        self.val_ds = tf.keras.preprocessing.image_dataset_from_directory(
+            data_dir,
+            validation_split=0.2,
+            subset="validation",
+            seed=123,
+            image_size=(img_height, img_width),
+            batch_size=batch_size)
+
+
+        class_names = self.train_ds.class_names
+        print(class_names)
+
+        print("==============ALL THE SHIT======================")
+        print(self.train_ds)
+
+    def convert_to_greyscale(self):
+        normalization_layer = tf.keras.layers.experimental.preprocessing.Rescaling(1./255)
+
     
     def one_hot_encode(self):
         #one-hot encode target column
-        self.y_train = to_categorical(self.y_train)
-        self.y_test = to_categorical(self.y_test)
+        self.y_train = to_categorical(self.train_ds)
+        self.y_test = to_categorical(self.val_ds)
 
         # y_train[0]
     
@@ -63,11 +87,11 @@ class ConvNeuralNet():
         return self.model.predict(self.X_test[:num_images])
 
 if __name__ == "__main__":
-    dataset = DatasetProcessing('/home/vscheyer/Desktop/traffic_sign_dataset/archive/', training_div = 2)
+    # dataset = DatasetProcessing('/home/vscheyer/catkin_ws/src/computer_vision/scripts/images/', training_div = 2)
     print("make cnn")
     cnn = ConvNeuralNet()
     print("load data")
-    cnn.load_data(dataset)
+    cnn.load_data('/home/vscheyer/catkin_ws/src/computer_vision/scripts/images/')
     print("encode")
     cnn.one_hot_encode()
     print("make model")
