@@ -4,6 +4,12 @@
 
 What was the goal of your project? Since everyone is doing a different project, you will have to spend some time setting this context.
 
+- Orient ourselves to neural nets
+- Understand the difference between FCNN & CNNs
+- Become familiar with the challenges of image classification
+- Practice selecting, organizing, and using a dataset
+
+
 ## Implementation 
 How did you solve the problem (i.e., what methods / algorithms did you use and how do they work)? As above, since not everyone will be familiar with the algorithms you have chosen, you will need to spend some time explaining what you did and how everything works.
 
@@ -20,6 +26,8 @@ Describe a design decision you had to make when working on your project and what
 
 ## Challenges
 What if any challenges did you face along the way?
+- Interpertating tensorflow documentation
+- Dataset organizing and loading
 
 ## Next Steps/Takeaways
 What would you do to improve your project if you had more time?
