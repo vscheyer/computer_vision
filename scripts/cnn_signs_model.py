@@ -10,6 +10,12 @@ from keras.models import Sequential
 from keras.layers import Dense, Conv2D, Flatten
 from dataset_processing import DatasetProcessing
 
+import PIL
+import PIL.Image
+import tensorflow as tf
+import tensorflow_datasets as tfds
+import pathlib
+
 # data = input_data.read_data_sets('data/fashion',one_hot=True,\
 #                                  source_url='http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/')
 
@@ -25,7 +31,7 @@ class ConvNeuralNet():
         (self.X_train, self.y_train), (self.X_test, self.y_test) = dataset
 
         #reshape data to fit model
-        self.X_train = self.X_train.reshape(60000,28,28,1)
+        self.X_train = self.X_train.reshape(60000,28,28,1)sudo make install
         self.X_test = self.X_test.reshape(10000,28,28,1)
 
         #mnist.load_data()
