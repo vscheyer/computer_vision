@@ -11,7 +11,7 @@ How did you solve the problem (i.e., what methods / algorithms did you use and h
 
 ### Fully Connected Neural Net
 
-### Convolutional Neural NEt
+### Convolutional Neural Net
 
 ## Design Decisions
 Describe a design decision you had to make when working on your project and what you ultimately did (and why)? These design decisions could be particular choices for how you implemented some part of an algorithm or perhaps a decision regarding which of two external packages to use in your project.
