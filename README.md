@@ -9,6 +9,8 @@ How did you solve the problem (i.e., what methods / algorithms did you use and h
 
 ### Dataset
 
+![dataset](https://github.com/vscheyer/computer_vision/blob/main/documentation/dataset.PNG)
+
 ### Fully Connected Neural Net
 
 ### Convolutional Neural Net
