@@ -8,6 +8,7 @@ import os
 from keras.utils import to_categorical
 from keras.models import Sequential
 from keras.layers import Dense, Conv2D, Flatten
+from dataset_processing import DatasetProcessing
 
 # data = input_data.read_data_sets('data/fashion',one_hot=True,\
 #                                  source_url='http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/')
@@ -56,27 +57,18 @@ class ConvNeuralNet():
         return self.model.predict(self.X_test[:num_images])
 
 if __name__ == "__main__":
+    dataset = DatasetProcessing('/home/vscheyer/Desktop/traffic_sign_dataset/archive/', training_div = 2)
     print("make cnn")
     cnn = ConvNeuralNet()
     print("load data")
-    cnn.load_data(mnist.load_data())
+    cnn.load_data(dataset)
     print("encode")
     cnn.one_hot_encode()
     print("make model")
     cnn.make_model()
     print("train model")
-    cnn.train_model()
+    # cnn.train_model()
     print("predict")
-    cnn.predict(4)
-
-# #plot the first image in the dataset
-# # print(X_train)
-# plt.imshow(X_train[0])
-# plt.show()
-
-# #check image shape
-# print(X_train[0].shape)
-
-
-
-#actual results for first 4 images in test set
+    print(cnn.predict(4))
+    print(cnn.y_test[:4])
+    print("done")
