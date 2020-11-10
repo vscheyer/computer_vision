@@ -1,4 +1,4 @@
-# Computer Vision Project: Comparison of FCNN & CNN for Image Classification
+# CV Project: Comparison of FCNN & CNN for Image Classification
 
 ### Project Goals
 
