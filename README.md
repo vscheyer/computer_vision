@@ -19,16 +19,16 @@ To achieve our learning goals, we implemented a fully connect neural net and a c
 We based our FCNN and CNN off of a tensorflow tutorial [2].  Our goal was to great simple neural nets that could be easily modfied to facilitae our understanding of the differnces beteen FCNN and CNNs.  After building our intial models, we compared how different modifications changed the perfoamce of each neural net
 
 ### Fully Connected Neural Net
-**Scenario 1:**    
-**Scenario 2:**
+!["Dataset"](https://github.com/vscheyer/computer_vision/blob/main/documentation/dataset.PNG)  
+*Fig. 3: blah blah*
+ 
 
 ### Convolutional Neural Net
-**Scenario 1:**  
-**Scenario 2:**
-
+!["Dataset"](https://github.com/vscheyer/computer_vision/blob/main/documentation/dataset.PNG)  
+*Fig. 3: blah blah*
+ 
 ### Comparison
-**Scenario 1:**    
-**Scenario 2:**
+
 
 ## Design Decisions
 In our project, we intentionally implemented the neural net that is considered to be a poor choice for the application of image classification. In doing our intial project research we learned why FCNNs stuggle with image classification.  This is because the FCNN treats each individual pixel as a "feature." The higher resolution the image, the more input layer grows were each input is a single pixel from the image.  All of those inputs have weights in the first hidden layer and the network then has many paramters.  A network with a large number of parameter takes longer to train and FCNN used for image classification have larger error than CNNs.
@@ -44,7 +44,7 @@ We wanted to witness the difference in performance and implemention of FCNN and 
 **Dataset organizing**:  Building off of experiences in prior courses, we thought that orgnaizing our selected dataset and seperating it into testing and training data.  Once we selected the Chinese Traffic Sign Recognition dataset, we wrote a script to seperate training and testing data for categories the user specified.  This seemed like a helpful tool to have before we even began to work with the library.  However, after digging into some tesnroflow examples, we learned that the library already had built-in function to help manage and seperate datasets. The way we orgnaized our data was incompatible with the existing way to load datasets so we ended up modifying our original script signifigatly.  While the final implementation was simpler, we did do uneceddary work that could have been avoided if we had looked closley at tensorflow examples prior to jumping in.
 
 ## Next Steps/Takeaways
-To improve our project we would want to explore additonal ways to improve the accuracy of our basic neural nets.  For the FCNN, we could implement feature extraction prior to feeding the images into the neural net as a way to decrease the number of parameters in the network.For the CNN, we would want to explore ways of improving it's accuracy like trainign for a larger number of epochs and/or including a dropout layer.
+To improve our project we would want to explore additonal ways to improve the accuracy of our basic neural nets.  For the FCNN, we could implement feature extraction prior to feeding the images into the neural net as a way to decrease the number of parameters in the network. For the CNN, we would want to explore ways of improving it's accuracy like trainign for a larger number of epochs and/or including a dropout layer.
 
 With more time, we would also like to explore incorporating neato simulation with our image classifier. We didn't begin to explore the challenges of feature extraction for camera stream in this project so this would be a substainal add-on. Doing this extension would build our understanding of the industry challenges in implemnting sign recognition in vehicles.
 
