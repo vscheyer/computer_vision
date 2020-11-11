@@ -29,7 +29,7 @@ To start, we built a simple FCNN with one hidden layer. We wanted to explore how
 !["Dataset"](https://github.com/vscheyer/computer_vision/blob/main/documentation/four-layer_cnn_58_layers.png)   
 *Fig. 3: 1 convolutional layer vs. a 4 convolutional layers CNN*
 
-To gain understanding of CNNs, we started with a very simple model that only contained 1 convolutional layer.  To improve the performace we modified the model to contain 4 convolutional layers.  For a dataset of this size, adding a few more layers allows the model to extract more features and improve performance. Adding many more additional layers wouldn't necessarily improve the model though because images only contain so many meaningful features.
+To gain understanding of CNNs, we started with a very simple model that only contained 1 convolutional layer.  In an attempt to improve the performace, we modified the model to contain 4 convolutional layers.  For a dataset of this size, however, it appears that adding additional layers doesn't improve performance. This is likely due to overfitting; adding additional layers wouldn't necessarily improve the model because images only contain so many meaningful features. It is also possible that the simplicity of the images in this dataset could contribute to overfitting as well.
 
 
 ## Design Decisions
