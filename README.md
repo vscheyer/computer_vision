@@ -2,7 +2,7 @@
 
 ## Project Goals
 
-What was the goal of your project? Since everyone is doing a different project, you will have to spend some time setting this context.
+Our team is relatively new to the space of machine learning and we selected learning goals to help give us an overview of neural nets.  Our learning goals were to:
 
 - Orient ourselves to neural nets
 - Understand the difference between FCNN & CNNs
@@ -13,9 +13,7 @@ What was the goal of your project? Since everyone is doing a different project, 
 ## Implementation 
 How did you solve the problem (i.e., what methods / algorithms did you use and how do they work)? As above, since not everyone will be familiar with the algorithms you have chosen, you will need to spend some time explaining what you did and how everything works.
 
-### Dataset
-The dataset we used is from the publiclly avaliable portion of the Chinese Traffic Sign Recognition database [1].  It contains 5998 images making up 58 different categories.  The images only contain single traffic signs and the road signs are (mostly) centered in the image. 
-
+To achieve our learning goals, we implemented a fully connect neural net and a convolution neural net to classify road signs. The dataset we used is from the publiclly avaliable portion of the Chinese Traffic Sign Recognition database [1].  It contains 5998 images making up 58 different categories.  The images only contain single traffic signs and the road signs are (mostly) centered in the image. 
 <p align="center">
   <img width="400" height="400" src="https://github.com/vscheyer/computer_vision/blob/main/documentation/dataset.PNG">
 </p>
