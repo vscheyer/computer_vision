@@ -42,11 +42,11 @@ We wanted to witness the difference in performance and implemention of FCNN and 
 **Dataset organizing**:  Building off of experiences in prior courses, we thought that orgnaizing our selected dataset and seperating it into testing and training data.  Once we selected the Chinese Traffic Sign Recognition dataset, we wrote a script to seperate training and testing data for categories the user specified.  This seemed like a helpful tool to have before we even began to work with the library.  However, after digging into some tesnroflow examples, we learned that the library already had built-in function to help manage and seperate datasets. The way we orgnaized our data was incompatible with the existing way to load datasets so we ended up modifying our original script signifigatly.  While the final implementation was simpler, we did do uneceddary work that could have been avoided if we had looked closley at tensorflow examples prior to jumping in.
 
 ## Next Steps/Takeaways
-What would you do to improve your project if you had more time?
+To improve our project we would want to explore additonal ways to improve the accuracy of our basic neural nets.  For the FCNN, we could implement feature extraction prior to feeding the images into the neural net as a way to decrease the number of parameters in the network.For the CNN, we would want to explore ways of improving it's accuracy like trainign for a larger number of epochs and/or including a dropout layer.
 
-Did you learn any interesting lessons for future robotic programming projects? These could relate to working on robotics projects in teams, working on more open-ended (and longer term) problems, or any other relevant topic.
+With more time, we would also like to explore incorporating neato simulation with our image classifier. We didn't begin to explore the challenges of feature extraction for camera stream in this project so this would be a substainal add-on. Doing this extension would build our understanding of the industry challenges in implemnting sign recognition in vehicles.
 
-In the case of image classification, this is desirable because less memory is needed for application is self-driving vehicles
+The timing of this project overlapped consierablly with major national events and a period of increasede uncreatinity. In planning for getting work done, we brainstormed how to manage the project this uncertainity and decided to try out more asynchornous work. We were able to minimize group meetings while increasing our automoy to work when each of us was able to. This is a valuable insight for programming partner projects and how to manage them during periods of increase stess outside of the project.
 
 ## Sources
 **[1]** https://www.kaggle.com/dmitryyemelyanov/chinese-traffic-signs  
