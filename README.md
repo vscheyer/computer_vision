@@ -19,7 +19,7 @@ To achieve our learning goals, we implemented a fully connect neural net and a c
 We based our FCNN and CNN off of a tensorflow tutorial [2].  Our goal was to great simple neural nets that could be easily modfied to facilitae our understanding of the differnces beteen FCNN and CNNs.  After building our intial models, we compared how different modifications changed the perfoamce of each neural net
 
 ### Fully Connected Neural Net
-!["Dataset"](https://github.com/vscheyer/computer_vision/blob/main/documentation/four-layer_FCNN_58_classes.PNG)  
+!["Dataset"](https://github.com/vscheyer/computer_vision/blob/main/documentation/four-layer_fcnn_58_classes.png)  
 *Fig. 3: blah blah*
 
 To start, we build a basic 
