@@ -10,22 +10,23 @@ Our team is relatively new to the space of machine learning and we selected lear
 - Practice selecting, organizing, and using a dataset
 
 ## Implementation 
-How did you solve the problem (i.e., what methods / algorithms did you use and how do they work)? As above, since not everyone will be familiar with the algorithms you have chosen, you will need to spend some time explaining what you did and how everything works.
-
 To achieve our learning goals, we implemented a fully connect neural net and a convolution neural net to classify road signs. The dataset we used is from the publiclly avaliable portion of the Chinese Traffic Sign Recognition database [1].  It contains 5998 images making up 58 different categories.  The images only contain single traffic signs and the road signs are (mostly) centered in the image. 
 <p align="center">
   <img width="400" height="400" src="https://github.com/vscheyer/computer_vision/blob/main/documentation/dataset.PNG">
 </p>
+We based our FCNN and CNN off of a tensorflow tutorial [2].  Our goal was to great simple neural nets that could be easily modfied to facilitae our understanding of the differnces beteen FCNN and CNNs.  After building our intial models, we compared how different modifications changed the perfoamce of each algorithim
 
 ### Fully Connected Neural Net
-Scenario 1:
+Scenario 1:  
 Scenario 2:
 
 ### Convolutional Neural Net
-Scenario 1:
+Scenario 1:  
 Scenario 2:
 
 ### Comparison
+Scenario 1:  
+Scenario 2:  
 
 ## Design Decisions
 In our project, we intentionally implemented an algorithim that is considered to be a poor choice for the application of image classification. In doing our intial project research we learned why FCNNs stuggle with image classification.  This is because the algorithim treats each individual pixel as a "feature." The higher resolution the image, the more input layer grows were each input is a single pixel from the image.  All of those inputs have weights in the first hidden layer and the network then has many paramters.  A network with a large number of parameter takes longer to train and FCNN used for image classification have larger error than CNNs.
