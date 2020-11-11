@@ -25,7 +25,9 @@ We based our FCNN and CNN off of a tensorflow tutorial [2].  Our goal was to gre
 
 ### Convolutional Neural Net
 !["Dataset"](https://github.com/vscheyer/computer_vision/blob/main/documentation/four-layer_cnn_58_layers.png)   
-*Fig. 3: blah blah*
+*Fig. 3: 1 convolutional layer vs. a 4 convolutional layer CNN*
+
+To 
  
 ### Comparison
 
