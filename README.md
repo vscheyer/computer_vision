@@ -20,14 +20,14 @@ We based our FCNN and CNN off of a tensorflow tutorial [2].  Our goal was to gre
 
 ### Fully Connected Neural Net
 !["Dataset"](https://github.com/vscheyer/computer_vision/blob/main/documentation/four-layer_fcnn_58_classes.png)  
-*Fig. 3: blah blah*
+*Fig. 3: 1 fully connected layer vs. 4 fully connected layer NN*
 
-To start, we build a basic 
+To start, we built a simple FCNN with one hidden layer. We wanted to explore how adding layers impacted the accuracy. We were surprised to see that there was not very pronounced improvement when we increased the number of layers to 4. We had expected that adding multiple fully connected layers would either clearly improve the model or lead to overfitting. We only went up to 4 layers due to runtime challenges. In the future we could run this on a server and observe networks with many more layers to see if our results change.
  
 
 ### Convolutional Neural Net
 !["Dataset"](https://github.com/vscheyer/computer_vision/blob/main/documentation/four-layer_cnn_58_layers.png)   
-*Fig. 3: 1 convolutional layer vs. a 4 convolutional layer CNN*
+*Fig. 3: 1 convolutional layer vs. a 4 convolutional layers CNN*
 
 To gain understanding of CNNs, we started with a very simple model that only contained 1 convolutional layer.  To improve the performace we modified the model to contained 4 convolutional layers.  For a dataset of this size, adding a few more layers allows the model to extract more features and improve performance. Adding many more additional layers wouldn't necessarily improve the model though because images only contain so many meaningful features.
  
