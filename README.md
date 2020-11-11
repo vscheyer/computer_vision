@@ -29,7 +29,7 @@ To start, we build a basic
 !["Dataset"](https://github.com/vscheyer/computer_vision/blob/main/documentation/four-layer_cnn_58_layers.png)   
 *Fig. 3: 1 convolutional layer vs. a 4 convolutional layer CNN*
 
-To gain undetstaning of CNNs, we started with a very simple model that only contained 1 convolutional layer.  To improve performace modified the model to contained 4 convolutional layers.  For the size of our dataset adding a few more layers allows the model to extract more features and improve performance. Adding additional layers wouldn't necessarily improve the model because images only contain so many meaninful features.
+To gain understanding of CNNs, we started with a very simple model that only contained 1 convolutional layer.  To improve the performace we modified the model to contained 4 convolutional layers.  For a dataset of this size, adding a few more layers allows the model to extract more features and improve performance. Adding many more additional layers wouldn't necessarily improve the model though because images only contain so many meaningful features.
  
 ### Comparison
 
