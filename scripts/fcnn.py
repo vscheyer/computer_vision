@@ -95,30 +95,28 @@ class ConvNeuralNet():
       loss = self.history.history['loss']
       val_loss = self.history.history['val_loss']
 
-      # for i in range (0,len(acc)):
-      #   acc[i] = acc[i]*100
-      #   val_acc[i] = val_acc[i]*100
-      #   loss[i] = loss[i]*100
-      #   val_loss[i] = val_loss[i]*100
+      for i in range (0,len(acc)):
+        acc[i] = acc[i]*100
+        val_acc[i] = val_acc[i]*100
 
       epochs_range = range(self.epochs)
 
       plt.figure(figsize=(8, 8))
       plt.subplot(1, 2, 1)
-      plt.plot(epochs_range, acc, label='Training Accuracy')
-      plt.plot(epochs_range, val_acc, label='Validation Accuracy')
+      plt.plot(epochs_range, acc, label='Training')
+      plt.plot(epochs_range, val_acc, label='Validation')
       plt.legend(loc='lower right')
       plt.title('Training and Validation Accuracy')
       plt.xlabel('Epochs')
       plt.ylabel('Accuracy (%)')
 
       plt.subplot(1, 2, 2)
-      plt.plot(epochs_range, loss, label='Training Misclassifications')
-      plt.plot(epochs_range, val_loss, label='Validation Misclassifications')
+      plt.plot(epochs_range, loss, label='Training')
+      plt.plot(epochs_range, val_loss, label='Validation')
       plt.legend(loc='upper right')
       plt.title('Training and Validation Loss')
       plt.xlabel('Epochs')
-      plt.ylabel('Misclassifications (number of instances)')
+      plt.ylabel('Loss')
       plt.show()
 
 if __name__ == "__main__":

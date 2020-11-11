@@ -97,8 +97,6 @@ class ConvNeuralNet():
       for i in range (0,len(acc)):
         acc[i] = acc[i]*100
         val_acc[i] = val_acc[i]*100
-        loss[i] = loss[i]*100
-        val_loss[i] = val_loss[i]*100
 
       epochs_range = range(self.epochs)
 
@@ -112,13 +110,13 @@ class ConvNeuralNet():
       plt.ylabel('Accuracy (%)')
 
       plt.subplot(1, 2, 2)
-      plt.plot(epochs_range, loss, label='Training Misclassifications')
-      plt.plot(epochs_range, val_loss, label='Validation Misclassifications')
+      plt.plot(epochs_range, loss, label='Training')
+      plt.plot(epochs_range, val_loss, label='Validation')
       plt.legend(loc='upper right')
       plt.title('Training and Validation Loss')
-      plt.show()
       plt.xlabel('Epochs')
-      plt.ylabel('Misclassifications (%)')
+      plt.ylabel('Loss')
+      plt.show()
 
 if __name__ == "__main__":
     downloaded_data_path = '/home/vscheyer/Desktop/traffic_sign_dataset/archive/'
