@@ -21,13 +21,15 @@ We based our FCNN and CNN off of a tensorflow tutorial [2].  Our goal was to gre
 ### Fully Connected Neural Net
 !["Dataset"](https://github.com/vscheyer/computer_vision/blob/main/documentation/dataset.PNG)  
 *Fig. 3: blah blah*
+
+To start, we build a basic 
  
 
 ### Convolutional Neural Net
 !["Dataset"](https://github.com/vscheyer/computer_vision/blob/main/documentation/four-layer_cnn_58_layers.png)   
 *Fig. 3: 1 convolutional layer vs. a 4 convolutional layer CNN*
 
-To 
+To gain undetstaning of CNNs, we started with a very simple model that only contained 1 convolutional layer.  To improve performace modified the model to contained 4 convolutional layers.  For the size of our dataset adding a few more layers allows the model to extract more features and improve performance. Adding additional layers wouldn't necessarily improve the model because images only contain so many meaninful features.
  
 ### Comparison
 
