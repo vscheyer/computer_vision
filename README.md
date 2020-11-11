@@ -11,9 +11,11 @@ Our team is relatively new to the space of machine learning and we selected lear
 
 ## Implementation 
 To achieve our learning goals, we implemented a fully connect neural net and a convolution neural net to classify road signs. The dataset we used is from the publiclly avaliable portion of the Chinese Traffic Sign Recognition database [1].  It contains 5998 images making up 58 different categories.  The images only contain single traffic signs and the road signs are (mostly) centered in the image. 
-<p align="center">
-  <img width="400" height="400" src="https://github.com/vscheyer/computer_vision/blob/main/documentation/dataset.PNG">
-</p>
+
+!["Dataset"](https://github.com/vscheyer/computer_vision/blob/main/documentation/dataset.PNG)  
+*Fig. 1: A few examples of the type of images in our Dataset*
+ 
+
 We based our FCNN and CNN off of a tensorflow tutorial [2].  Our goal was to great simple neural nets that could be easily modfied to facilitae our understanding of the differnces beteen FCNN and CNNs.  After building our intial models, we compared how different modifications changed the perfoamce of each neural net
 
 ### Fully Connected Neural Net
