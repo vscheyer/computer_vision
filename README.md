@@ -2,9 +2,9 @@
 
 ## Project Goals
 
-Our team is relatively new to the space of machine learning and we selected learning goals to help give us an overview of neural nets.  Our learning goals were to:
+Our team is relatively new to the space of machine learning and we selected learning goals to help give us an overview of neural networks.  Our learning goals were to:
 
-- Orient ourselves to neural nets
+- Familiarize ourselves  with neural nets
 - Understand the difference between FCNN & CNNs
 - Become familiar with the challenges of image classification
 - Practice selecting, organizing, and using a dataset
@@ -19,7 +19,7 @@ To achieve our learning goals, we implemented a fully connect neural net and a c
 We based our FCNN and CNN off of a tensorflow tutorial [2].  Our goal was to great simple neural nets that could be easily modfied to facilitae our understanding of the differnces beteen FCNN and CNNs.  After building our intial models, we compared how different modifications changed the perfoamce of each neural net
 
 ### Fully Connected Neural Net
-!["Dataset"](https://github.com/vscheyer/computer_vision/blob/main/documentation/dataset.PNG)  
+!["Dataset"](https://github.com/vscheyer/computer_vision/blob/main/documentation/four-layer_FCNN_58_classes.PNG)  
 *Fig. 3: blah blah*
 
 To start, we build a basic 
