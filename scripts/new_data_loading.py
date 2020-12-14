@@ -7,11 +7,12 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
-
+from tensorflow.keras.preprocessing import image
+import os
 
 class ConvNeuralNet():
     def __init__(self):
-      self.train_ds = None 
+      self.train_ds = None
       self.val_ds = None
       # Image Parameters
       self.N_CLASSES = 3
@@ -22,7 +23,7 @@ class ConvNeuralNet():
       self.history = None
       self.epochs = 25
 
-    def load_data(self, image_dir, categories, 
+    def load_data(self, image_dir, categories,
                   img_h, img_w, batch, grayscale):
 
       self.N_CLASSES = len(categories) # CHANGE HERE, total number of classes
@@ -36,7 +37,7 @@ class ConvNeuralNet():
 
       self.train_ds = tf.keras.preprocessing.image_dataset_from_directory(
         image_dir,
-        validation_split=0.2,
+        validation_split=0.8,
         subset="training",
         seed=123,
         image_size=(self.IMG_HEIGHT, self.IMG_WIDTH),
@@ -66,10 +67,10 @@ class ConvNeuralNet():
       layers.experimental.preprocessing.Rescaling(1./255, input_shape=(self.IMG_HEIGHT, self.IMG_WIDTH, 3)),
       layers.Conv2D(16, 3, padding='same', activation='relu'),
       layers.MaxPooling2D(),
-      # layers.Conv2D(32, 3, padding='same', activation='relu'),
-      # layers.MaxPooling2D(),
-      # layers.Conv2D(64, 3, padding='same', activation='relu'),
-      # layers.MaxPooling2D(),
+      layers.Conv2D(32, 3, padding='same', activation='relu'),
+      layers.MaxPooling2D(),
+      layers.Conv2D(64, 3, padding='same', activation='relu'),
+      layers.MaxPooling2D(),
       layers.Flatten(),
       layers.Dense(128, activation='relu'),
       layers.Dense(self.N_CLASSES)
@@ -86,6 +87,16 @@ class ConvNeuralNet():
         validation_data=self.val_ds,
         epochs=self.epochs
       )
+
+      self.current_dir = os.getcwd()
+      img = image.load_img(self.current_dir + "/003_1_0001_1_j.png", target_size=(64,64), color_mode='rgb')
+      # cv2.imshow('ROI saved', img)
+      img = image.img_to_array(img)
+      img = np.expand_dims(img, axis=0)
+
+      print("PREDICTION")
+      prediction = model.predict_classes(img)
+      print(prediction)
 
     def analyze_results(self):
       acc = self.history.history['accuracy']
@@ -121,17 +132,11 @@ class ConvNeuralNet():
 if __name__ == "__main__":
     downloaded_data_path = '/home/vscheyer/Desktop/traffic_sign_dataset/archive/'
     image_path = '/home/vscheyer/catkin_ws/src/computer_vision/scripts/images'
-    selected_categories = [1,50, 5, 7]
+    selected_categories = range(1,58)
     dp = FileOrganizing(downloaded_data_path)
     dp.organize_data(selected_categories)
 
     cnn = ConvNeuralNet()
     cnn.load_data(image_path, selected_categories, 64, 64, 32, 0)
-    cnn.make_model(25)
+    cnn.make_model(8)
     cnn.analyze_results()
-
-
-
-    
-
-    
