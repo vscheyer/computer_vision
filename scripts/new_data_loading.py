@@ -22,6 +22,7 @@ class ConvNeuralNet():
       self.batch_size = 32
       self.history = None
       self.epochs = 25
+      self.class_names = None
 
     def load_data(self, image_dir, categories,
                   img_h, img_w, batch, grayscale):
@@ -51,8 +52,8 @@ class ConvNeuralNet():
         image_size=(self.IMG_HEIGHT, self.IMG_WIDTH),
         batch_size=self.batch_size)
 
-      class_names = self.train_ds.class_names
-      print(class_names)
+      self.class_names = self.train_ds.class_names
+      print(self.class_names)
 
       AUTOTUNE = tf.data.experimental.AUTOTUNE
 
@@ -65,11 +66,11 @@ class ConvNeuralNet():
       self.epochs = epochs
       model = Sequential([
       layers.experimental.preprocessing.Rescaling(1./255, input_shape=(self.IMG_HEIGHT, self.IMG_WIDTH, 3)),
-      layers.Conv2D(16, 3, padding='same', activation='relu'),
+      layers.Conv2D(32, 3, padding='same', activation='relu'),
       layers.MaxPooling2D(),
       layers.Conv2D(32, 3, padding='same', activation='relu'),
       layers.MaxPooling2D(),
-      layers.Conv2D(64, 3, padding='same', activation='relu'),
+      layers.Conv2D(16, 3, padding='same', activation='relu'),
       layers.MaxPooling2D(),
       layers.Flatten(),
       layers.Dense(128, activation='relu'),
@@ -89,14 +90,30 @@ class ConvNeuralNet():
       )
 
       self.current_dir = os.getcwd()
-      img = image.load_img(self.current_dir + "/003_1_0001_1_j.png", target_size=(64,64), color_mode='rgb')
-      # cv2.imshow('ROI saved', img)
-      img = image.img_to_array(img)
-      img = np.expand_dims(img, axis=0)
+      # img = image.load_img(self.current_dir + "/003_1_0001_1_j.png", target_size=(64,64), color_mode='rgb')
+      # # cv2.imshow('ROI saved', img)
+      # img = image.img_to_array(img)
+      # img = np.expand_dims(img, axis=0)
+
+      # print("PREDICTION")
+      # prediction = model.predict_classes(img)
+      # print(prediction)
+
+      img = keras.preprocessing.image.load_img("/home/vscheyer/catkin_ws/src/sign_recognition/roi.png", target_size=(64, 64))
+      img_array = keras.preprocessing.image.img_to_array(img)
+      img_array = tf.expand_dims(img_array, 0) # Create a batch
+
+      predictions = model.predict(img_array)
+      score = tf.nn.softmax(predictions[0])
 
       print("PREDICTION")
-      prediction = model.predict_classes(img)
-      print(prediction)
+      print(predictions)
+
+      print(
+          "This image most likely belongs to {} with a {:.2f} percent confidence."
+          .format(self.class_names[np.argmax(score)], 100 * np.max(score))
+      )
+
 
     def analyze_results(self):
       acc = self.history.history['accuracy']
@@ -138,5 +155,5 @@ if __name__ == "__main__":
 
     cnn = ConvNeuralNet()
     cnn.load_data(image_path, selected_categories, 64, 64, 32, 0)
-    cnn.make_model(8)
+    cnn.make_model(10)
     cnn.analyze_results()
